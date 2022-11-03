@@ -31,7 +31,7 @@
 >
 	<nav class="flex items-center justify-between mx-auto md:max-w-8xl">
 		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between">
-			<a href="/" sveltekit:prefetch>
+			<a href="/" data-sveltekit-prefetch>
 				<img
 					src={logo}
 					alt="Matias Hernández Logo"
@@ -48,7 +48,7 @@
 			{#each menuLinks as item}
 				<li class="px-5 py-2">
 					<a
-						sveltekit:prefetch
+						data-sveltekit-prefetch
 						class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
 						href={item.href}>{item.title}</a
 					>
@@ -142,10 +142,10 @@
 			>
 				{#each menuLinks as item}
 					<li
-						on:click={() => (menu = !menu)}
 						class="px-5 py-6 text-lg text-left border-b-2 dark:border-ebony-clay-100 border-ebony-clay-600"
 					>
 						<a
+							on:click={() => (menu = !menu)}
 							sveltekit:prefetch
 							class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
 							href={item.href}>{item.title}</a

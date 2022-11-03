@@ -1,5 +1,5 @@
-import { json } from "@sveltejs/kit";
 import { request, gql } from "graphql-request";
+import { error } from "@sveltejs/kit";
 
 type Source = {
   course: string;
@@ -35,8 +35,15 @@ export default async function getCourses(): Promise<Array<any>> {
   return allMicrobytes;
 }
 
-export async function GET() {
-  const courses = await getCourses();
-  // Suggestion (check for correctness before using):
-  return json(courses);
+/** @type {import('./$types').PageServerLoad} */
+export async function load() {
+  try {
+    const courses = await getCourses();
+    return {
+      courses,
+    };
+  } catch (err) {
+    console.error(err);
+    throw error(500, `Could not load courses`);
+  }
 }

@@ -1,0 +1,1 @@
+import{H as t}from"./control-03be33ef.js";function n(r,o){return new t(r,o)}const s=!0;async function a({fetch:r}){const o="/api/newsletter.json",e=await r(o);if(e.ok)return{courses:await e.json()};throw n(500,`Could not load ${o}`)}const l=Object.freeze(Object.defineProperty({__proto__:null,prerender:s,load:a},Symbol.toStringTag,{value:"Module"}));export{l as _,a as l,s as p};

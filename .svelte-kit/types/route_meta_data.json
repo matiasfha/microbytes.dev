@@ -1,6 +1,6 @@
 {
 	"/": [
-		"src/routes/+page.js"
+		"src/routes/+page.server.ts"
 	],
 	"/api/newsletter.json": [
 		"src/routes/api/newsletter.json/+server.ts"
