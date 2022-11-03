@@ -1,32 +1,13 @@
-<script context="module">
-	export const prerender = true;
-	export async function load({ fetch }) {
-		const url = "/api/newsletter.json";
-		const res = await fetch(url);
-		if (res.ok) {
-			const courses = await res.json();
-
-			return {
-				props: {
-					courses,
-				},
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`),
-		};
-	}
-</script>
-
 <script lang="ts">
+	import type { PageData } from './$types'
+	export let data: PageData
 	import Seo from "$components/Seo.svelte";
 	import CourseCard from "$components/CourseCard.svelte";
 	import microbytes from "$images/microbytes.png";
 	import me from "$images/me.png";
 	import blocksToHtml from "@sanity/block-content-to-html";
-	export let courses = [];
+  
+	
 </script>
 
 <Seo
@@ -60,14 +41,67 @@
 
 		<div class="font-body text-left pt-8">
 			<p>
-				Únete a Micro Bytes un newsletter semanal de micro cursos.
+				Únete a Micro Bytes un newsletter micro cursos.
 				Recibirás una colección de contenidos para mejorar tu
 				conocimiento en desarrollo web y darle un giro a tu carrera,
 				directamente en tu correo.
 			</p>
 		</div>
+
+		<div class="font-body text-left pt-8">
+			<p>
+				Además, puedes simplemente unirte al newsletter general y mantenerte al día con todo el contenido que publico (NO SPAM lo prometo 🙋): Artículos, cursos, videos, podcast, etc!
+			</p>
+			<form class="flex flex-row justify-between mx-auto mt-4 p-8 prose prose-lg items-center" action="https://static.mailerlite.com/webforms/submit/c4r8t8" data-code="c4r8t8" method="post" target="_blank">
+				<input type="hidden" name="ml-submit" value="1">
+				<input type="hidden" name="anticsrf" value="true">
+				<input type="text" name="fields[email]" placeholder="Tu email" class="px-4 font-medium rounded-md show-md w-80" autocomplete="email"/>
+				<button
+				type="submit"
+					class={`h-8 w-52 
+        bg-ebony-clay-600 
+        dark:bg-gray-200 
+        border-ebony-clay-600 
+        dark:border-gray-200 
+        text-gray-300 dark:text-ebony-clay-600
+        relative inline-flex items-center justify-center py-3 overflow-hidden font-medium
+        transition duration-300 ease-out border-2 
+        rounded-full shadow-md group`}
+				>
+					<span
+						class={`absolute inset-0 flex items-center justify-center w-full h-full
+          duration-300 -translate-x-full
+           group-hover:translate-x-0 ease
+           dark:text-white text-ebony-clay-600
+          dark:bg-ebony-clay-600 bg-gray-200`}
+					>
+						<svg
+							class="w-8 h-6"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M14 5l7 7m0 0l-7 7m7-7H3"
+							/></svg
+						>
+					</span>
+					<span
+						class={`absolute flex items-center justify-center w-full h-full
+         text-gray-100 dark:text-ebony-clay-600  
+         transition-all duration-300 transform group-hover:translate-x-full ease`}>Únete hoy</span
+					>
+					<span class="relative invisible">Únete hoy</span>
+				</button>
+			</form>
+		</div>
 	</div>
 </section>
+
+
 
 <section class=" p-2 md:p-12">
 	<h3
@@ -108,10 +142,10 @@
 
 <div class="grid grid-cols-1 gap-2">
 	<CourseCard
-		logo={courses[1].image.asset.url}
-		title={courses[1].course}
+		logo={data.courses[1].image.asset.url}
+		title={data.courses[1].course}
 		description={blocksToHtml({
-			blocks: courses[1].descriptionRaw,
+			blocks: data.courses[1].descriptionRaw,
 			projectId: "cyypawp1",
 			dataset: "production",
 		})}
@@ -119,10 +153,10 @@
 		codeId={"g5i0m4"}
 	/>
 	<CourseCard
-		logo={courses[0].image.asset.url}
-		title={courses[0].course}
+		logo={data.courses[0].image.asset.url}
+		title={data.courses[0].course}
 		description={blocksToHtml({
-			blocks: courses[0].descriptionRaw,
+			blocks: data.courses[0].descriptionRaw,
 			projectId: "cyypawp1",
 			dataset: "production",
 		})}
@@ -130,19 +164,4 @@
 		codeId={"u2d6y6"}
 	/>
 </div>
-<!--
-<div class="grid grid-cols-1 gap-2">
-	{#each courses as course}
-		<CourseCard
-			logo={course.image.asset.url}
-			title={course.course}
-			description={blocksToHtml({
-				blocks: course.descriptionRaw,
-				projectId: 'cyypawp1',
-				dataset: 'production'
-			})}
-			convertKitId={course.tagId}
-		/>
-	{/each}
-</div>
--->
+

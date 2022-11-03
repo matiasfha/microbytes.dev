@@ -149,8 +149,15 @@
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="https://matiasfha.dev/consulting"
+								href="https://cal.com/matiasfh/30min"
 								>Consultoría y Mentoría</a
+							>
+						</li>
+						<li class="py-1">
+							<a
+								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
+								href="https://matiashernandez.dev/sponsorships"
+								>Auspicios</a
 							>
 						</li>
 						<li class="py-1">

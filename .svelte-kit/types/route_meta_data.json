@@ -1,0 +1,10 @@
+{
+	"/": [
+		"src/routes/+page.js"
+	],
+	"/api/newsletter.json": [
+		"src/routes/api/newsletter.json/+server.ts"
+	],
+	"/sucess": [],
+	"/success": []
+}
